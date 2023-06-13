@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} <title>Products</title> {% endblock %}
+<link rel="stylesheet" href="{% static 'main/css/styl.css' %}">
+
+{% block content %} 
+
+    <div class="upper-container-category" style="background-image: url('');">
+        <h1>{{category.name}}s</h1>
+    </div>
+
+    <div class="lower-container-category">
+        {% if products %}
+            {% for product in products %}
+            <div class="category-product">
+                <div class="product-category-desc">
+                    <img src="{{product.image.url}}" alt="">
+                    <h1>{{product.name}}</h1>
+                </div>
+                <div class="product-category-btn">
+                    <a href="{% url 'piece-page' product.id %}" type="button" class="btn btn-outline-dark">SHOW</a>
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+        {% else %}
+            <h1>SORRY, AT THIS TIME WE DONT HAVE ANYTHING AVIABLE</h1>
+        {% endif %}
+    </div>
+{% endblock %}

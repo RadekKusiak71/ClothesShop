@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} <title>Home</title> {% endblock %}
+
+{% block content %} 
+    <div class="upper-container" style="background-image: url('/static/main/images/narcissist-bg.jpg');"></div>
+    <hr>
+    <div class="lower-container">
+        <h1>TOP SALES</h1>
+        <div class="products-home">
+            {% for product in products %}
+                <div class="top-product">
+                    <div class="product-image">
+                        <img src="{{product.image.url}}" alt="{{ product.name }}" >
+                    </div>
+
+                    <div class="product-data">
+                        <h2><a href="{% url 'piece-page' pk=product.id  %}">{{product.name}}</a></h2>
+                        <hr>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

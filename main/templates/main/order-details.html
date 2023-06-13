@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %} <title>{{order}}</title> {% endblock %}
+
+{% block content %}
+    <div class="order-name-details">
+        <h1>{{order}}</h1>
+    </div>
+    <div class="details">
+        <h1>DETAILS:</h1>
+        <hr>
+        <h2>FIRSTNAME: {{details.first_name}}</h2>
+        <hr>
+        <h2>LASTNAME: {{details.first_name}}</h2>
+        <hr>
+        <h2>ADDRESS: {{details.first_name}}</h2>
+        <hr>
+        <h2>EMAIL: {{details.first_name}}</h2>
+        <hr>
+        <h2>PHONE: {{details.first_name}}</h2>
+        <hr>
+        {% if details.status %}
+        <h2>STATUS: COMPLETED</h2>
+        <hr>
+        {% else %}
+        <h2>STATUS: UNCOMPLETED</h2>
+        <hr>
+        <h2>Your ordered items:</h2>
+        <div class="items-details">
+            {% for item in items %}
+            <div class="item-img">
+                <img src="{{item.product.image.url}}" alt="{{item.name}}">
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <form action="{%url 'order_cancel-mth' order.id%}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger" style="width: 20%;">CANCEL ORDER</button>
+        </form>
+        <hr>
+        {% endif %}
+    </div>
+
+{% endblock %}

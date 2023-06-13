@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} <title>Products</title> {% endblock %}
+<link rel="stylesheet" href="{% static 'main/css/styl.css' %}">
+
+{% block content %} 
+    <div class="product-upper-container" style="background-image: url('/main/static/main/images/narcissist-logo.jpg');">
+    </div>
+    <div class="category-lower-container">
+
+        <div class="category">
+            <a href="{% url 'categories-page' 1%}" class="category-a">T-SHIRTS</a>
+        </div>
+
+        <div class="category">
+            <a href="{% url 'categories-page' 2%}" class="category-a">HOODIES</a>
+        </div>
+
+    </div>
+{% endblock %}

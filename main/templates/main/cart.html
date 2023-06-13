@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} <title>Cart</title> {% endblock %}
+<link rel="stylesheet" href="{% static 'main/css/styl.css' %}">
+
+{% block content %}
+    <div class="cart-container">
+        <div class="left-cart">
+
+            <div class="cart-overview">
+                {% if products %}
+                <h1>CART OVERVIEW:</h1>
+                <div class="products-cart">
+                    {% for product in products %}
+                        <div class="product-info-cart">
+                            <img src="{{ product.product.image.url }}" alt="">
+                            <h3>{{ product }} - {{ product.product.price }}$</h3>
+                            <form action="{% url 'cart-item-remove' product_id=product.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark">Remove</button>
+                            </form>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h2>YOUR CART IS EMPTY</h2>
+            {% endif %}
+            </div>
+
+        </div>
+        <div class="right-cart">
+            <div class="cart-form">
+                <h1>OVERVIEW:</h1>
+                <hr>
+                {% if price %}
+                <h2>CHECKOUT PRICE: {{ price }} $</h2>
+            {% else %}
+                <h2>CHECKOUT PRICE: 0 $</h2>
+            {% endif %}
+                <hr>
+                <form action="{% if cart_id != 0 %}{% url 'order_creation' cart_id %}{% endif %}" method="post" class="order-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Firstname</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name" name="firstname">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Lastname</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name" name="lastname">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Address</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Address" name="address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Phone</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-light" style="margin-top: 1rem;">Order</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

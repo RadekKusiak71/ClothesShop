@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %} <title>Your orders</title> {% endblock %}
+
+{% block content %}
+<div class="your-orders">
+    <h1>Your Orders: ( You have: {{counter}} {% if counter > 1%}orders{% else %}order{%endif%} )</h1>
+    <hr>
+    <div class="orders-names">
+        {% for order in orders %}
+        <div class="order-name-detail">
+            <div class="order-name">
+                <h1>{{order}}</h1>
+            </div>
+            <div class="order-button">
+                <a href="{% url 'orders-details-page' order.id %}" class="btn btn-outline-dark"><h2>DETAILS</h2></a>
+            </div>
+        </div>
+        <hr>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
