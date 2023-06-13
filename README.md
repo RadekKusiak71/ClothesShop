@@ -13,7 +13,20 @@
   pip install -r requirements.txt
   ```
 4.To make emails work you have to configure email backend in ecommerce/settings.py (its on the bottom of a file)
-5.Enjoy
+5.ADMIN USER: login - admin password - 123
+6 TEST USER - login TestUser password - !@#$%^&*
+
+# REMEMBER TO CONFIGURE EMAIL BACKED IN SETTINGS.PY
+1. Just type data in blindspots also in views in send_mail()
+  ```
+  EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+  EMAIL_HOST = 'smtp.gmail.com'
+  EMAIL_HOST_USER = ''
+  EMAIL_HOST_PASSWORD = ''
+  EMAIL_PORT = 587
+  EMAIL_USE_TLS = True
+  DEFAULT_FROM_EMAIL = '' 
+  ```
 
 # REMEMBER TO CONFIGURE EMAIL BACKED IN SETTINGS.PY
 1. Just type data in blindspots also in views in send_mail()
