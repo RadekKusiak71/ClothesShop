@@ -13,4 +13,5 @@
   pip install -r requirements.txt
   ```
 4.To make emails work you have to configure email backend in ecommerce/settings.py (its on the bottom of a file)
-5.Enjoy
+5.ADMIN USER: login - admin password - 123
+6 TEST USER - login TestUser password - !@#$%^&*
